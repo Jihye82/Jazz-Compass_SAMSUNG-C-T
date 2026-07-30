@@ -235,20 +235,51 @@ showResult();
 
 }
 
-
-
-
-
 function showResult(){
 
+let maxScore = Math.max(...Object.values(score));
 
-let winner=
-Object.keys(score).reduce(
-(a,b)=>score[a]>score[b]?a:b
+let candidates = Object.keys(score).filter(
+x => score[x] === maxScore
 );
 
+let winner =
+candidates[Math.floor(Math.random()*candidates.length)];
 
-let r=results[winner];
+
+let r = results[winner];
+
+
+document.getElementById("quiz")
+.classList.add("hidden");
+
+
+document.getElementById("type").innerHTML=r.type;
+
+document.getElementById("artist").innerHTML=r.artist;
+
+document.getElementById("song").innerHTML="🎵 "+r.song;
+
+document.getElementById("songs").innerHTML=
+"함께 들어보세요 : "+r.songs;
+
+
+document.getElementById("spotifyLink").href=r.spotify;
+
+document.getElementById("youtubeLink").href=r.youtube;
+
+
+document.getElementById("message").innerHTML=r.message;
+
+
+document.getElementById("result")
+.classList.remove("hidden");
+
+}
+
+
+
+
 
 
 document.getElementById("quiz")
