@@ -1,119 +1,207 @@
 let step = 0;
 
-let answers=[];
+
+let score={
+
+Chet:0,
+Norah:0,
+Bill:0,
+Louis:0,
+Dave:0,
+Miles:0,
+Sinatra:0,
+Kim:0
+
+};
+
 
 
 const questions=[
 
-{
-q:"오늘 하루는 어땠나요?",
-a:["😊 좋은 하루","🙂 평범한 하루","😮‍💨 지친 하루","🌙 생각이 많은 하루"]
-},
 
 {
-q:"지금 듣고 싶은 악기는?",
-a:["🎹 피아노","🎷 색소폰","🎺 트럼펫","🎤 보컬"]
-},
-
-{
-q:"평소 좋아하는 음악 장르는?",
+q:"오늘 하루의 분위기는?",
 a:[
-"🎤 K-POP",
-"🎸 Rock",
-"🎧 Hip-Hop/R&B",
-"🌎 다양하게 듣는 편"
+["😊 기분 좋은 하루","Louis"],
+["🙂 평범한 하루","Norah"],
+["😮‍💨 조금 지친 하루","Chet"],
+["🌙 생각이 많은 하루","Miles"]
 ]
 },
 
-{
-q:"지금 가장 하고 싶은 것은?",
-a:[
-"☕ 카페",
-"🚶 산책",
-"📖 휴식",
-"🍺 친구 만나기"
-]
 
+{
+q:"가장 끌리는 악기는?",
+a:[
+["🎹 피아노","Bill"],
+["🎷 색소폰","Dave"],
+["🎺 트럼펫","Chet"],
+["🎤 보컬","Norah"]
+]
+},
+
+
+{
+q:"평소 가장 좋아하는 음악 장르는?",
+a:[
+["🎤 K-POP / Pop","Sinatra"],
+["🎸 Rock","Kim"],
+["🎧 Hip-Hop / R&B","Miles"],
+["🎼 Classical","Bill"],
+["🌎 장르 안 가리고 듣는 편","Dave"]
+]
+},
+
+
+{
+q:"재즈를 듣고 싶은 순간은?",
+a:[
+["☕ 카페","Norah"],
+["🚶 산책","Dave"],
+["📚 집중","Bill"],
+["🌃 밤에 혼자","Chet"]
+]
+},
+
+
+{
+q:"지금 공간의 분위기는?",
+a:[
+["☀️ 밝은 낮","Louis"],
+["🌧 비 오는 날","Bill"],
+["🌆 도시의 밤","Miles"],
+["🌌 조용한 밤","Chet"]
+]
 }
+
 
 ];
 
 
-const results=[
 
-{
-title:"🌙 Midnight Blue",
+const results={
+
+
+Chet:{
+type:"🌙 Midnight Blue",
 artist:"Chet Baker",
 song:"I Fall In Love Too Easily",
-msg:"오늘은 조금 천천히 걸어도 괜찮은 하루입니다."
+songs:"My Funny Valentine · Almost Blue",
+spotify:"https://open.spotify.com/search/Chet%20Baker",
+youtube:"https://www.youtube.com/results?search_query=Chet+Baker",
+message:"오늘은 조금 천천히 걸어도 괜찮은 하루입니다."
 },
 
-{
-title:"☕ Coffee Break",
+
+
+Norah:{
+type:"☕ Coffee Break",
 artist:"Norah Jones",
 song:"Don't Know Why",
-msg:"커피 한 잔과 함께 듣기 좋은 재즈입니다."
+songs:"Come Away With Me · Sunrise",
+spotify:"https://open.spotify.com/search/Norah%20Jones",
+youtube:"https://www.youtube.com/results?search_query=Norah+Jones",
+message:"커피 한 잔과 함께 듣기 좋은 재즈입니다."
 },
 
-{
-title:"🌧 Rainy Mood",
+
+
+Bill:{
+type:"🌧 Rainy Piano",
 artist:"Bill Evans",
-song:"Waltz For Debby",
-msg:"조용한 생각이 필요한 날의 피아노입니다."
+song:"Waltz for Debby",
+songs:"Peace Piece · My Foolish Heart",
+spotify:"https://open.spotify.com/search/Bill%20Evans",
+youtube:"https://www.youtube.com/results?search_query=Bill+Evans",
+message:"조용한 생각이 필요한 순간의 피아노입니다."
 },
 
-{
-title:"🌞 Bright Morning",
+
+
+Louis:{
+type:"🌞 Bright Morning",
 artist:"Louis Armstrong",
 song:"What A Wonderful World",
-msg:"좋은 에너지가 필요한 하루입니다."
+songs:"La Vie En Rose · Hello Dolly!",
+spotify:"https://open.spotify.com/search/Louis%20Armstrong",
+youtube:"https://www.youtube.com/results?search_query=Louis+Armstrong",
+message:"좋은 에너지가 필요한 하루입니다."
 },
 
-{
-title:"🌃 City Lights",
+
+
+Dave:{
+type:"🌃 City Lights",
 artist:"Dave Brubeck Quartet",
 song:"Take Five",
-msg:"도시의 밤과 잘 어울리는 리듬입니다."
+songs:"Blue Rondo à la Turk · Unsquare Dance",
+spotify:"https://open.spotify.com/search/Dave%20Brubeck",
+youtube:"https://www.youtube.com/results?search_query=Dave+Brubeck",
+message:"도시의 밤과 잘 어울리는 리듬입니다."
 },
 
-{
-title:"🌌 Adventure",
+
+
+Miles:{
+type:"🌌 Deep Jazz",
 artist:"Miles Davis",
 song:"So What",
-msg:"새로운 음악을 발견하는 즐거움을 느껴보세요."
+songs:"Blue in Green · Freddie Freeloader",
+spotify:"https://open.spotify.com/search/Miles%20Davis",
+youtube:"https://www.youtube.com/results?search_query=Miles+Davis",
+message:"새로운 음악을 발견하는 즐거움을 느껴보세요."
 },
 
-{
-title:"🎺 Classic Swing",
+
+
+Sinatra:{
+type:"🎺 Classic Swing",
 artist:"Frank Sinatra",
 song:"Fly Me To The Moon",
-msg:"익숙하지만 오래 사랑받는 명곡입니다."
+songs:"My Way · The Way You Look Tonight",
+spotify:"https://open.spotify.com/search/Frank%20Sinatra",
+youtube:"https://www.youtube.com/results?search_query=Frank+Sinatra",
+message:"익숙하지만 오래 사랑받는 명곡입니다."
 },
 
-{
-title:"🇰🇷 Korean Jazz",
+
+
+Kim:{
+type:"🇰🇷 Korean Jazz",
 artist:"김오키",
 song:"스며가는 것",
-msg:"한국 재즈만의 개성을 느껴보세요."
+songs:"대표 라이브 · 협업곡 추천",
+spotify:"https://open.spotify.com/search/%EA%B9%80%EC%98%A4%ED%82%A4",
+youtube:"https://www.youtube.com/results?search_query=%EA%B9%80%EC%98%A4%ED%82%A4",
+message:"한국 재즈만의 독특한 에너지를 느껴보세요."
 }
 
-];
+
+};
+
 
 
 function showQuestion(){
 
-document.getElementById("question").innerHTML=
-questions[step].q;
+let current=questions[step];
+
+document.getElementById("question").innerHTML=current.q;
 
 
 let html="";
 
-questions[step].a.forEach(x=>{
+
+current.a.forEach(item=>{
 
 html+=`
-<div class="answer" onclick="selectAnswer('${x}')">
-${x}
+
+<div class="answer"
+onclick="selectAnswer('${item[1]}')">
+
+${item[0]}
+
 </div>
+
 `;
 
 });
@@ -125,9 +213,10 @@ document.getElementById("answers").innerHTML=html;
 
 
 
-function selectAnswer(a){
 
-answers.push(a);
+function selectAnswer(type){
+
+score[type]++;
 
 step++;
 
@@ -148,43 +237,65 @@ showResult();
 
 
 
+
+
 function showResult(){
 
 
-document.getElementById("quiz").classList.add("hidden");
-
-let r=
-results[Math.floor(Math.random()*results.length)];
-
-
-document.getElementById("resultTitle").innerHTML=r.title;
-
-document.getElementById("artist").innerHTML=
-r.artist;
+let winner=
+Object.keys(score).reduce(
+(a,b)=>score[a]>score[b]?a:b
+);
 
 
-document.getElementById("song").innerHTML=
-"🎵 "+r.song;
+let r=results[winner];
 
 
-document.getElementById("message").innerHTML=
-r.msg;
+document.getElementById("quiz")
+.classList.add("hidden");
+
+
+document.getElementById("type").innerHTML=r.type;
+
+document.getElementById("artist").innerHTML=r.artist;
+
+document.getElementById("song").innerHTML="🎵 "+r.song;
+
+document.getElementById("songs").innerHTML=
+"함께 들어보세요 : "+r.songs;
+
+
+document.getElementById("spotifyLink").href=r.spotify;
+
+document.getElementById("youtubeLink").href=r.youtube;
+
+
+document.getElementById("message").innerHTML=r.message;
 
 
 document.getElementById("result")
 .classList.remove("hidden");
 
+
 }
+
+
 
 
 
 function restart(){
 
 step=0;
-answers=[];
+
+
+Object.keys(score)
+.forEach(x=>score[x]=0);
+
+
 
 document.getElementById("result")
 .classList.add("hidden");
+
 
 document.getElementById("quiz")
 .classList.remove("hidden");
@@ -193,6 +304,8 @@ document.getElementById("quiz")
 showQuestion();
 
 }
+
+
 
 
 showQuestion();
