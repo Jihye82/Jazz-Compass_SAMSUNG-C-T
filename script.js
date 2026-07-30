@@ -336,7 +336,3 @@ showQuestion();
 
 }
 
-
-
-
-showQuestion();
