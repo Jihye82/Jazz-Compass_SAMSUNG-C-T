@@ -1,4 +1,4 @@
-alert("hello jazz");
+
 let step = 0;
 
 
